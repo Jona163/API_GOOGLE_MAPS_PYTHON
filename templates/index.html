@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora de Rutas</title>
+</head>
+<body>
+    <h1>Calculadora de Rutas</h1>
+    <form action="/ruta" method="post">
+        <label for="origen">Ciudad de Origen:</label>
+        <input type="text" id="origen" name="origen" required>
+        <br>
+        <label for="destino">Ciudad de Destino:</label>
+        <input type="text" id="destino" name="destino" required>
+        <br>
+        <button type="submit">Calcular Ruta</button>
+    </form>
+    <div id="resultados"></div>
+
+    <script>
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/ruta', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                let resultadosDiv = document.getElementById('resultados');
+                resultadosDiv.innerHTML = `<h2>Resultados</h2>`;
+                if (data.error) {
+                    resultadosDiv.innerHTML += `<p>${data.error}</p>`;
+                } else {
+                    resultadosDiv.innerHTML += `<h3>Dijkstra</h3><p>Ruta: ${data.dijkstra.ruta.join(' -> ')}</p>`;
+                    resultadosDiv.innerHTML += `<h3>Búsqueda Tabú</h3><p>Ruta: ${data.tabu.ruta.join(' -> ')}</p><p>Distancia: ${data.tabu.distancia}</p>`;
+                    resultadosDiv.innerHTML += `<h3>Algoritmo Genético</h3><p>Ruta: ${data.genetico.ruta.join(' -> ')}</p><p>Distancia: ${data.genetico.distancia}</p>`;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
