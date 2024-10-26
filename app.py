@@ -56,3 +56,36 @@ def dijkstra(graph, initial):
                 path[edge] = min_node
 
     return visited, path
+
+# Búsqueda Tabú
+def busqueda_tabu(graph, start, end, tabu_size=10, max_iter=100):
+    current_node = start
+    best_path = [start]
+    tabu_list = set()
+    best_distance = float('inf')
+
+    for _ in range(max_iter):
+        neighbors = graph[current_node]
+        next_node = None
+
+        for neighbor in neighbors:
+            if neighbor not in tabu_list and (next_node is None or neighbors[neighbor] < neighbors[next_node]):
+                next_node = neighbor
+
+        if next_node is None:
+            break
+
+        best_path.append(next_node)
+        tabu_list.add(next_node)
+
+        if len(tabu_list) > tabu_size:
+            tabu_list.remove(best_path[-tabu_size - 1])
+
+        current_node = next_node
+
+        if current_node == end:
+            total_distance = sum(graph[best_path[i]][best_path[i + 1]] for i in range(len(best_path) - 1))
+            if total_distance < best_distance:
+                best_distance = total_distance
+
+    return best_path, best_distance
