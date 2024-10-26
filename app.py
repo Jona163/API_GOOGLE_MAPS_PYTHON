@@ -127,3 +127,9 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
     for generation in range(generations):
         temperature = max(1.0, float(generations - generation) / generations)  # Temperatura Boltzmann
         new_population = []
+
+        population = sorted(population, key=fitness)
+        
+        if fitness(population[0]) < best_fitness:
+            best_individual = population[0]
+            best_fitness = fitness(population[0])
