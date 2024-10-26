@@ -119,3 +119,11 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
         if new_cost < old_cost:
             return 1.0
         return math.exp((old_cost - new_cost) / temperature)
+
+    population = [create_individual() for _ in range(population_size)]
+    best_individual = None
+    best_fitness = float('inf')
+
+    for generation in range(generations):
+        temperature = max(1.0, float(generations - generation) / generations)  # Temperatura Boltzmann
+        new_population = []
