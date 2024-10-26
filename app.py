@@ -133,3 +133,13 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
         if fitness(population[0]) < best_fitness:
             best_individual = population[0]
             best_fitness = fitness(population[0])
+
+        # Elitismo
+        if elitism:
+            new_population.append(population[0])
+
+        while len(new_population) < population_size:
+            parent1, parent2 = random.choices(population, k=2)
+            child1, child2 = crossover(parent1, parent2)
+            mutate(child1)
+            mutate(child2)
