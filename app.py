@@ -109,3 +109,8 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
         child1 = parent1[:cross_point] + [gene for gene in parent2 if gene not in parent1[:cross_point]]
         child2 = parent2[:cross_point] + [gene for gene in parent1 if gene not in parent2[:cross_point]]
         return child1, child2
+
+    def mutate(individual):
+        if random.random() < mutation_rate:
+            idx1, idx2 = random.sample(range(len(individual)), 2)
+            individual[idx1], individual[idx2] = individual[idx2], individual[idx1]
