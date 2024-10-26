@@ -148,3 +148,11 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
             for child in [child1, child2]:
                 if random.random() < boltzmann_probability(fitness(parent1), fitness(child), temperature):
                     new_population.append(child)
+
+        population = new_population
+
+    return best_individual, best_fitness
+
+@app.route('/')
+def index():
+    return render_template('index.html')
