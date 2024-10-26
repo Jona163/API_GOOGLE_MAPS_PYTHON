@@ -101,3 +101,11 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
         for i in range(len(individual) - 1):
             total_distance += graph[individual[i]][individual[i + 1]]
         return total_distance
+
+    def crossover(parent1, parent2):
+        if random.random() > crossover_rate:
+            return parent1, parent2
+        cross_point = random.randint(1, len(parent1) - 2)
+        child1 = parent1[:cross_point] + [gene for gene in parent2 if gene not in parent1[:cross_point]]
+        child2 = parent2[:cross_point] + [gene for gene in parent1 if gene not in parent2[:cross_point]]
+        return child1, child2
