@@ -114,3 +114,8 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
         if random.random() < mutation_rate:
             idx1, idx2 = random.sample(range(len(individual)), 2)
             individual[idx1], individual[idx2] = individual[idx2], individual[idx1]
+
+    def boltzmann_probability(old_cost, new_cost, temperature):
+        if new_cost < old_cost:
+            return 1.0
+        return math.exp((old_cost - new_cost) / temperature)
