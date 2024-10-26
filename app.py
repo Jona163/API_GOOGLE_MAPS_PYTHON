@@ -11,6 +11,7 @@ import random
 import math
 
 # Inicializa el cliente de Google Maps con tu API key
+#Aqui va el api de google
 gmaps = googlemaps.Client(key='Apikey de google')
 app = Flask(__name__)
 
