@@ -26,3 +26,22 @@ def obtener_coordenadas(ciudad):
 # Calcula la distancia entre dos puntos usando numpy
 def distancia(p1, p2):
     return np.linalg.norm(np.array(p1) - np.array(p2))
+
+# Algoritmo de Dijkstra
+def dijkstra(graph, initial):
+    visited = {initial: 0}
+    path = {}
+
+    nodes = set(graph.keys())
+
+    while nodes:
+        min_node = None
+        for node in nodes:
+            if node in visited:
+                if min_node is None:
+                    min_node = node
+                elif visited[node] < visited[min_node]:
+                    min_node = node
+
+        if min_node is None:
+            break
