@@ -193,3 +193,11 @@ def calcular_ruta():
         # Usar Búsqueda Tabú
         tabu_path, tabu_distance = busqueda_tabu(grafo, ciudad_origen, ciudad_destino)
         
+        # Usar Algoritmo Genético Mejorado
+        genetic_path, genetic_distance = algoritmo_genetico_mejorado(grafo, ciudad_origen, ciudad_destino)
+        
+        return jsonify({
+            'dijkstra': {'ruta': dijkstra_path},
+            'tabu': {'ruta': tabu_path, 'distancia': tabu_distance},
+            'genetico': {'ruta': genetic_path, 'distancia': genetic_distance}
+        })
