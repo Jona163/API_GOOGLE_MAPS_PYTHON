@@ -179,3 +179,17 @@ def calcular_ruta():
                 if ciudad1 != ciudad2:
                     grafo[ciudad1][ciudad2] = distancia(obtener_coordenadas(ciudad1), obtener_coordenadas(ciudad2))
         
+        
+        # Usar Dijkstra
+        visited, paths = dijkstra(grafo, ciudad_origen)
+        dijkstra_path = []
+        _destination = ciudad_destino
+        while _destination != ciudad_origen:
+            dijkstra_path.append(_destination)
+            _destination = paths[_destination]
+        dijkstra_path.append(ciudad_origen)
+        dijkstra_path.reverse()
+
+        # Usar Búsqueda Tabú
+        tabu_path, tabu_distance = busqueda_tabu(grafo, ciudad_origen, ciudad_destino)
+        
