@@ -201,3 +201,8 @@ def calcular_ruta():
             'tabu': {'ruta': tabu_path, 'distancia': tabu_distance},
             'genetico': {'ruta': genetic_path, 'distancia': genetic_distance}
         })
+    else:
+        return jsonify({'error': 'No se pudieron obtener las coordenadas de una o ambas ciudades.'})
+
+if __name__ == "__main__":
+    app.run(debug=True)
