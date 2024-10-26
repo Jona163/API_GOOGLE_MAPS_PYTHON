@@ -12,7 +12,7 @@ import math
 
 # Inicializa el cliente de Google Maps con tu API key
 #Aqui va el api de google
-gmaps = googlemaps.Client(key='Apikey de google')
+gmaps = googlemaps.Client(key='AIzaSyDytpSLPygjIvXWahgD6BABOeMx6VUTQqU')
 app = Flask(__name__)
 
 # Obtiene las coordenadas GPS de una ciudad
