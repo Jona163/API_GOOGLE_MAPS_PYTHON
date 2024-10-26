@@ -89,3 +89,15 @@ def busqueda_tabu(graph, start, end, tabu_size=10, max_iter=100):
                 best_distance = total_distance
 
     return best_path, best_distance
+# Algoritmo Genético Mejorado con Criterios de Cauchy y Boltzmann
+def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generations=500, crossover_rate=0.8, mutation_rate=0.02, elitism=True):
+    def create_individual():
+        individual = list(graph.keys())
+        random.shuffle(individual)
+        return individual
+
+    def fitness(individual):
+        total_distance = 0
+        for i in range(len(individual) - 1):
+            total_distance += graph[individual[i]][individual[i + 1]]
+        return total_distance
