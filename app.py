@@ -143,3 +143,8 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
             child1, child2 = crossover(parent1, parent2)
             mutate(child1)
             mutate(child2)
+
+            # Criterio de Boltzmann para aceptar nuevos individuos
+            for child in [child1, child2]:
+                if random.random() < boltzmann_probability(fitness(parent1), fitness(child), temperature):
+                    new_population.append(child)
