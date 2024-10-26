@@ -166,3 +166,16 @@ def calcular_ruta():
     coordenadas_destino = obtener_coordenadas(ciudad_destino)
     
     if coordenadas_origen and coordenadas_destino:
+        # Crear el grafo
+        ciudades = ["Ciudad de Mexico", "Guadalajara", "Monterrey", "Puebla", "Tijuana"]
+        grafo = {}
+        for ciudad in ciudades:
+            coordenadas = obtener_coordenadas(ciudad)
+            if coordenadas:
+                grafo[ciudad] = {}
+
+        for ciudad1 in grafo:
+            for ciudad2 in grafo:
+                if ciudad1 != ciudad2:
+                    grafo[ciudad1][ciudad2] = distancia(obtener_coordenadas(ciudad1), obtener_coordenadas(ciudad2))
+        
