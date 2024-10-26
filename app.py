@@ -156,3 +156,13 @@ def algoritmo_genetico_mejorado(graph, start, end, population_size=100, generati
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/ruta', methods=['POST'])
+def calcular_ruta():
+    ciudad_origen = request.form['origen']
+    ciudad_destino = request.form['destino']
+    
+    coordenadas_origen = obtener_coordenadas(ciudad_origen)
+    coordenadas_destino = obtener_coordenadas(ciudad_destino)
+    
+    if coordenadas_origen and coordenadas_destino:
